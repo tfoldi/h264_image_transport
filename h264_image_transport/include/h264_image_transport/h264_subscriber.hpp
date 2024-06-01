@@ -55,7 +55,7 @@ private:
 
   int64_t seq_;
   int consecutive_receive_failures_;
-  AVCodec * p_codec_;
+  const AVCodec * p_codec_;
   AVCodecContext * p_codec_context_;
   AVFrame * p_frame_;
   AVPacket * p_packet_;

@@ -79,7 +79,7 @@ class H264CamNode : public rclcpp::Node
   OnSetParametersCallbackHandle::SharedPtr on_set_parameters_callback_;
   Parameters parameters_;
   int seq_{};
-  AVInputFormat * input_format_{nullptr};
+  const AVInputFormat * input_format_{nullptr};
   AVFormatContext * format_context_{nullptr};
   std::thread cam_thread_;
   std::atomic<bool> stop_signal_{false};
@@ -99,7 +99,7 @@ public:
 
     // Device drivers appear as formats in ffmpeg
     // Find the v4l driver
-    AVInputFormat * input_format = av_find_input_format("video4linux2");
+    const AVInputFormat * input_format = av_find_input_format("video4linux2");
     if (!input_format) {
       RCLCPP_ERROR(get_logger(), "Could not find the v4l driver");
       throw std::runtime_error("Could not find the v4l driver");
